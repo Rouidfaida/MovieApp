@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NavBare from "./Components/NavBare";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Movielist from "./Components/Movielist";
+import { useState } from "react";
+import Add from "./Components/Add";
+import { DataMov } from "./Components/ListMovieData";
 
 function App() {
+  const [movie, setMovie] = useState(DataMov);
+
+  const [textm, setTextm] = useState("");
+  const [star, setStar] = useState(1);
+  const handelChange = (e) => {
+    setTextm(e.target.value);
+  };
+
+  const handelAdd = (x, y, z, t) => {
+    let newAction = {
+      imgs: x,
+      name: y,
+      id: Math.random(),
+      rating: z,
+      years: t,
+    };
+    setMovie([...movie, newAction]);
+  };
+  const ratingChanged = (note) => {
+    setStar(note);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBare
+        text={textm}
+        handelChange={handelChange}
+        ratingChanged={ratingChanged}
+        rat={star}
+      />
+
+      <Add add={handelAdd} ml={movie} />
+
+      <Movielist
+        mov={movie.filter(
+          (el) =>
+            el.name.toUpperCase().includes(textm.toUpperCase()) &&
+            el.rating >= star
+        )}
+      />
     </div>
   );
 }
