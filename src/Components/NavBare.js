@@ -56,7 +56,7 @@ const NavBare = ({ handelChange, text, ratingChanged, rat }) => {
               onChange={ratingChanged}
               size={24}
               isHalf={true}
-              activeColor="#ffd700"
+              // activeColor="#ffd700"
             />
             ,
           </div>
