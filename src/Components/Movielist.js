@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Description from './Description'
 const Movielist = ({ mov, match, movie }) => {
   return (
-    <Router>
+  
       <div
         style={{
           display: 'flex',
@@ -36,14 +36,14 @@ const Movielist = ({ mov, match, movie }) => {
               />
 
               <Link to={`/description/${el.id}`}>
-                {' '}
-                <button>description</button>
+                
+                <Button style={{backgroundColor:"midnightblue"}}>Trailer</Button>
               </Link>
             </Card.Body>
           </Card>
         ))}
       </div>
-    </Router>
+    
   )
 }
 
